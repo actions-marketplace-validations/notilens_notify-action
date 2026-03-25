@@ -1,0 +1,53 @@
+name: 'NotiLens Notify'
+description: 'Send AI agent task lifecycle notifications to NotiLens from GitHub Actions'
+author: 'NotiLens'
+
+branding:
+  icon: 'bell'
+  color: 'blue'
+
+inputs:
+  token:
+    description: 'NotiLens topic token (from dashboard)'
+    required: true
+  secret:
+    description: 'NotiLens topic secret (from dashboard)'
+    required: true
+  agent:
+    description: 'Agent name (identifies the sender)'
+    required: true
+  event:
+    description: 'Event type: task.completed, task.failed, task.started, emit, etc.'
+    required: true
+  message:
+    description: 'Notification message'
+    required: false
+    default: ''
+  task_id:
+    description: 'Task ID — defaults to run ID if omitted'
+    required: false
+    default: ''
+  type:
+    description: 'Override notification type: info | success | warning | urgent'
+    required: false
+    default: ''
+  tags:
+    description: 'Comma-separated tags'
+    required: false
+    default: ''
+  open_url:
+    description: 'URL to open (e.g. link to the workflow run)'
+    required: false
+    default: ''
+  image_url:
+    description: 'Image URL to attach'
+    required: false
+    default: ''
+  download_url:
+    description: 'Download URL to attach'
+    required: false
+    default: ''
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
